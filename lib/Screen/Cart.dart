@@ -749,8 +749,7 @@ class _CartState extends State<Cart> with TickerProviderStateMixin {
                       Container(
                         width: 26,
                         height: 20,
-                        child: Text(
-                          cartModel.qty!,
+                        child: Text(cartModel.qty!,
                           textAlign: TextAlign.center,
                           //price.toString(),
                           style: TextStyle(

@@ -2211,7 +2211,7 @@ class _HomePageState extends State<HomePage>
 
           context.read<FavoriteProvider>().setLoading(false);
         }, onError: (error) {
-          setSnackbar(error.toString(), context);
+          // setSnackbar(error.toString(), context);
           context.read<FavoriteProvider>().setLoading(false);
         });
       } else {
@@ -2246,7 +2246,7 @@ class _HomePageState extends State<HomePage>
 
       context.read<HomeProvider>().setOfferLoading(false);
     }, onError: (error) {
-      setSnackbar(error.toString(), context);
+      // setSnackbar(error.toString(), context);
       context.read<HomeProvider>().setOfferLoading(false);
     });
   }
@@ -2276,7 +2276,7 @@ class _HomePageState extends State<HomePage>
 
       context.read<HomeProvider>().setSecLoading(false);
     }, onError: (error) {
-      setSnackbar(error.toString(), context);
+      // setSnackbar(error.toString(), context);
       context.read<HomeProvider>().setSecLoading(false);
     });
   }
@@ -2373,7 +2373,7 @@ class _HomePageState extends State<HomePage>
         setSnackbar(msg!, context);
       }
     }, onError: (error) {
-      setSnackbar(error.toString(), context);
+      // setSnackbar(error.toString(), context);
     });
   }
 

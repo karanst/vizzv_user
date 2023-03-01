@@ -129,7 +129,7 @@ class _FoodShopListState extends State<FoodShopList>  with AutomaticKeepAliveCli
 
       context.read<HomeProvider>().setSellerLoading(false);
     }, onError: (error) {
-      setSnackbar(error.toString(), context);
+      // setSnackbar(error.toString(), context);
       context.read<HomeProvider>().setSellerLoading(false);
     });
   }
@@ -1465,7 +1465,7 @@ class _FoodShopListState extends State<FoodShopList>  with AutomaticKeepAliveCli
 
       context.read<HomeProvider>().setSellerLoading(false);
     }, onError: (error) {
-      setSnackbar(error.toString(), context);
+      // setSnackbar(error.toString(), context);
       context.read<HomeProvider>().setSellerLoading(false);
     });
   }
@@ -1509,7 +1509,7 @@ class _FoodShopListState extends State<FoodShopList>  with AutomaticKeepAliveCli
 
       context.read<HomeProvider>().setSellerLoading(false);
     }, onError: (error) {
-      setSnackbar(error.toString(), context);
+      // setSnackbar(error.toString(), context);
       context.read<HomeProvider>().setSellerLoading(false);
     });
   }

@@ -467,7 +467,7 @@ class StateFav extends State<Favorite> with TickerProviderStateMixin {
 
           context.read<FavoriteProvider>().setLoading(false);
         }, onError: (error) {
-          setSnackbar(error.toString(), context);
+          // setSnackbar(error.toString(), context);
           context.read<FavoriteProvider>().setLoading(false);
         });
       } else {

@@ -19,7 +19,7 @@ import '../Helper/String.dart';
 import '../Helper/Stripe_Service.dart';
 import '../Model/Model.dart';
 import 'Cart.dart';
-
+import 'package:upi_india/upi_india.dart';
 class Payment extends StatefulWidget {
   final Function update;
   final String? msg;
@@ -78,10 +78,32 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin,Automati
   AnimationController? buttonController;
   bool _isNetworkAvail = true;
   //final plugin = PaystackPlugin();
+  UpiIndia _upiIndia = UpiIndia();
+  List<UpiApp>? apps;
+  UpiApp app = UpiApp.googlePay;
+
+  Future<UpiResponse> initiateTransaction(UpiApp app) async {
+    return _upiIndia.startTransaction(
+      app: app,
+      receiverUpiId: "8770496665@ybl",
+      receiverName: 'Karan Singh Tomar',
+      transactionRefId: 'TestingUpiIndiaPlugin',
+      transactionNote: 'Test Upi from app',
+      amount: 1.00,
+    );
+  }
 
   @override
   void initState() {
     super.initState();
+    _upiIndia.getAllUpiApps(mandatoryTransactionId: false).then((value) {
+      setState(() {
+        apps = value;
+      });
+    }).catchError((e) {
+      apps = [];
+    });
+
     _getdateTime();
     timeSlotList.length = 0;
 

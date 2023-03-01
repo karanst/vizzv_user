@@ -208,6 +208,11 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin stripe_payment, de.jonasbark.stripepayment.StripePaymentPlugin", e);
     }
     try {
+      flutterEngine.getPlugins().add(new com.az.upi_india.UpiIndiaPlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin upi_india, com.az.upi_india.UpiIndiaPlugin", e);
+    }
+    try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.urllauncher.UrlLauncherPlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin url_launcher_android, io.flutter.plugins.urllauncher.UrlLauncherPlugin", e);

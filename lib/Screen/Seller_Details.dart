@@ -2639,502 +2639,507 @@ class _SellerProfileState extends State<SellerProfile>
     DateTime time = DateTime.now();
 
     return openStatus == "1"
-        ? Container(
-            margin: EdgeInsets.all(5.0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0), color: Colors.white),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () =>
-                              onTapGoDetails(index: index, response: response),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              response.indicator == "1"
-                                  ? Image.asset(
-                                      "assets/images/veg.png",
-                                      width: 15,
-                                      height: 15,
-                                    )
-                                  : response.indicator == "2"
-                                      ? Image.asset(
-                                          "assets/images/non_veg.jpg",
-                                          width: 15,
-                                          height: 15,
-                                        )
-                                      : response.indicator == "3"
-                                          ? Image.asset(
-                                              "assets/images/egg.png",
-                                              width: 15,
-                                              height: 15,
-                                            )
-                                          : SizedBox(),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Container(
-                                width: 160,
-                                child: Text(
-                                  "${response.name}",
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600),
+        ? InkWell(
+      onTap: (){
+        onTapGoDetails(index: index, response: response);
+      },
+          child: Container(
+              margin: EdgeInsets.all(5.0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0), color: Colors.white),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: InkWell(
+                            onTap: () =>
+                                onTapGoDetails(index: index, response: response),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                response.indicator == "1"
+                                    ? Image.asset(
+                                        "assets/images/veg.png",
+                                        width: 15,
+                                        height: 15,
+                                      )
+                                    : response.indicator == "2"
+                                        ? Image.asset(
+                                            "assets/images/non_veg.jpg",
+                                            width: 15,
+                                            height: 15,
+                                          )
+                                        : response.indicator == "3"
+                                            ? Image.asset(
+                                                "assets/images/egg.png",
+                                                width: 15,
+                                                height: 15,
+                                              )
+                                            : SizedBox(),
+                                SizedBox(
+                                  width: 5,
                                 ),
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  (response.rating == "0" ||
-                                          response.rating == "0.0")
-                                      ? Container()
-                                      : Row(
-                                          children: [
-                                            RatingBarIndicator(
-                                              rating: double.parse(
-                                                  response.rating!),
-                                              itemBuilder: (context, index) =>
-                                                  Icon(
-                                                Icons.star_rate_rounded,
-                                                color: Colors.amber,
-                                                //color: colors.primary,
-                                              ),
-                                              unratedColor:
-                                                  Colors.grey.withOpacity(0.5),
-                                              itemCount: 5,
-                                              itemSize: 18.0,
-                                              direction: Axis.horizontal,
-                                            ),
-                                            Text(
-                                              " (" + response.noOfRating! + ")",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .overline,
-                                            )
-                                          ],
-                                        ),
-                                  Row(
-                                    children: <Widget>[
-                                      Text(
-                                          CUR_CURRENCY! +
-                                              " " +
-                                              response.min_max_price![
-                                                      "max_special_price"]
-                                                  .toString() +
-                                              " ",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle2!
-                                              .copyWith(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .fontColor,
-                                                  fontWeight: FontWeight.bold)),
-                                      Text(
-                                        "${response.min_max_price!["max_price"]}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .overline!
-                                            .copyWith(
-                                                decoration:
-                                                    TextDecoration.lineThrough,
-                                                letterSpacing: 0),
-                                      ),
-                                    ],
+                                Container(
+                                  width: 160,
+                                  child: Text(
+                                    "${response.name}",
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600),
                                   ),
-                                  response.time_left!=null&&response.time_left!=""?Text(
-                                      response.time_left!,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .subtitle2!
-                                          .copyWith(
-                                          color: Colors.red,
-                                          fontWeight: FontWeight.bold)):SizedBox(),
-                                  Container(
-                                    height: 50,
-                                    width:
-                                        MediaQuery.of(context).size.width / 2.3,
-                                    child: Html(
-                                      data: "${response.shortDescription!}",
-                                      style: {
-                                        "body": Style(
-                                            fontSize: FontSize(12.0),
-                                            fontWeight: FontWeight.w400,
-                                            maxLines: 2,
-                                            padding: EdgeInsets.zero,
-                                            margin: EdgeInsets.zero,
-                                            textOverflow:
-                                                TextOverflow.ellipsis),
-                                      },
-                                    ),
-                                  ),
-                                  response.breakfast_start_product_time != null
-                                      ? Text(
-                                          openStatus == "0"
-                                              ? "${response.next_available_text.toString()}"
-                                              : "",
-                                          style: TextStyle(
-                                              fontSize: 12, color: Colors.red),
-                                        )
-                                      : Text("")
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 150,
-                        child: Stack(
-                          clipBehavior: Clip.hardEdge,
-                          children: [
-                            Container(
-                              height: 120,
-                              width: 140,
-                              padding: EdgeInsets.only(left: 10),
-                              child: Card(
-                                elevation: 1,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: response.image!=null&&response.image!=""&&response.image.toString().contains("jpg")||response.image!=null&&response.image!=""&&response.image.toString().contains("png")?commonHWImage(
-                                      response.image.toString(),
-                                      120.0,
-                                      MediaQuery.of(context).size.width,
-                                      "assets/images/placeholder.png",
-                                      context,
-                                      "assets/images/placeholder.png"):Image.asset("assets/images/placeholder.png"),
                                 ),
-                              ),
-                            ),
-                            response.prVarientList![0].cartCount == "0"
-                                ? Positioned(
-                                    top: 100,
-                                    left: 25,
-                                    width: 100,
-                                    height: 30,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.white,
-                                            elevation: 2),
-                                        onPressed: () {
-                                          if (openStatus == "0") {
-                                            showToast(response
-                                                .next_available_text
-                                                .toString());
-                                            // "Item Available After ${timeData}");
-                                          }
-                                          // if (timeData != "Yes" &&
-                                          //     timeData != "No" &&
-                                          //     timeData != "") {
-                                          //   showToast(
-                                          //       "Item Available After ${timeData}");
-                                          // }
-                                          else {
-                                            if (context
-                                                    .read<CartProvider>()
-                                                    .isProgress ==
-                                                false)
-                                              print(
-                                                  response.quantity_step_size);
-                                            // addToCart(
-                                            //     index,
-                                            //     (int.parse(response["data"][index]["variants"][0]["cart_count"])
-                                            //         + int.parse(
-                                            //             response["data"][index]["quantity_step_size"]))
-                                            //         .toString(), response["data"][index]);
-
-                                            addToCart(
-                                                index,
-                                                (int.parse(response
-                                                            .prVarientList![0]
-                                                            .cartCount!) +
-                                                        int.parse(response
-                                                            .quantity_step_size!))
-                                                    .toString(),
-                                                response);
-                                          }
-                                        },
-                                        child: Text(
-                                          "ADD",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              color: colors.primary,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 15),
-                                        )),
-                                  )
-                                : Positioned(
-                                    top: 100,
-                                    left: 25,
-                                    width: 120,
-                                    // width: 100,
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 20.0),
-                                      child: Card(
-                                        elevation: 2,
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                            color: Colors.white,
-                                            // border: Border.all(
-                                            //     color: Colors.black, width: 0.7)
-                                          ),
-                                          child: Row(
-                                            children: <Widget>[
-                                              response.availability == "0"
-                                                  ? Container()
-                                                  : cartBtnList
-                                                      ? Container()
-                                                      : Container(),
-                                              // GestureDetector(
-                                              //     child:
-                                              Container(
-                                                height: 35,
-                                                width: 30,
-                                                child: IconButton(
-                                                  onPressed: () {
-                                                    if (context
-                                                            .read<
-                                                                CartProvider>()
-                                                            .isProgress ==
-                                                        false)
-                                                      removeFromCart(
-                                                          index, response);
-                                                  },
-                                                  icon: Icon(
-                                                    Icons.remove,
-                                                    size: 20,
-                                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    (response.rating == "0" ||
+                                            response.rating == "0.0")
+                                        ? Container()
+                                        : Row(
+                                            children: [
+                                              RatingBarIndicator(
+                                                rating: double.parse(
+                                                    response.rating!),
+                                                itemBuilder: (context, index) =>
+                                                    Icon(
+                                                  Icons.star_rate_rounded,
+                                                  color: Colors.amber,
+                                                  //color: colors.primary,
                                                 ),
+                                                unratedColor:
+                                                    Colors.grey.withOpacity(0.5),
+                                                itemCount: 5,
+                                                itemSize: 18.0,
+                                                direction: Axis.horizontal,
                                               ),
-                                              // onTap: () {
-                                              //     // if (_isProgress == false
-                                              //     //     // (int.parse(
-                                              //     //     //     _controller[index].text) >
-                                              //     //     //     0)
-                                              //     // )
-                                              //       if (context.read<CartProvider>().isProgress ==
-                                              //           false)
-                                              //       removeFromCart(index, response["data"][index]);
-                                              //   },
-                                              // ),
-                                              Container(
-                                                  width: 26,
-                                                  height: 20,
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Center(
-                                                          child: Text(response
-                                                              .prVarientList![0]
-                                                              .cartCount!)),
-                                                    ],
-                                                  )
-                                                  // TextField(
-                                                  //   textAlign: TextAlign.center,
-                                                  //   readOnly: true,
-                                                  //   style: TextStyle(
-                                                  //       fontSize: 12,
-                                                  //       color: Theme.of(context)
-                                                  //           .colorScheme
-                                                  //           .fontColor),
-                                                  //   controller: _controller[index],
-                                                  //   decoration: InputDecoration(
-                                                  //     border: InputBorder.none,
-                                                  //   ),
-                                                  // ),
-                                                  ),
-                                              // GestureDetector(
-                                              //   child:
-                                              Container(
-                                                height: 35,
-                                                width: 30,
-                                                child: IconButton(
-                                                  onPressed: () {
-                                                    print(response.totalAllow);
-                                                    if(response.totalAllow!=null&&int.parse(response
-                                                        .prVarientList![
-                                                    0]
-                                                        .cartCount!)==int.parse(response.totalAllow!)){
-                                                        setSnackbar("Total Allowed Quantity ${response.totalAllow!}", context);
-                                                      return;
-                                                    }
-                                                    if (context
-                                                            .read<
-                                                                CartProvider>()
-                                                            .isProgress ==
-                                                        false)
-                                                      addToCart(
-                                                          index,
-                                                          (int.parse(response
-                                                                      .prVarientList![
-                                                                          0]
-                                                                      .cartCount!)
-                                                                  // model
-                                                                  // .prVarientList![model
-                                                                  // .selVarient!]
-                                                                  // .cartCount!)
-                                                                  +
-                                                                  int.parse(response
-                                                                      .quantity_step_size
-                                                                      .toString()))
-                                                              .toString(),
-                                                          response);
-                                                  },
-                                                  icon: Icon(
-                                                    Icons.add,
-                                                    size: 20,
-                                                  ),
-                                                ),
-                                              ),
-                                              //   onTap: () {
-                                              //     if (context.read<CartProvider>().isProgress ==
-                                              //         false)
-                                              //     addToCart(
-                                              //         index,
-                                              //         (int.parse(response["data"][index]["variants"][0]["cart_count"])
-                                              //             // model
-                                              //             // .prVarientList![model
-                                              //             // .selVarient!]
-                                              //             // .cartCount!)
-                                              //             + int.parse(
-                                              //                 response["data"][index]["quantity_step_size"]))
-                                              //             .toString(), response["data"][index]);
-                                              //   },
-                                              // )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    /*Row(
-                                    children: [
-                                      model.availability == "0"
-                                          ? Container()
-                                          : cartBtnList
-                                              ? Container()
-                                              : Container(),
-
-                                      Row(
-                                        children: <Widget>[
-                                          Row(
-                                            children: <Widget>[
-                                              GestureDetector(
-                                                child: Card(
-                                                  shape:
-                                                      RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Icon(
-                                                      Icons.remove,
-                                                      size: 15,
-                                                    ),
-                                                  ),
-                                                ),
-                                                onTap: () {
-                                                  if (_isProgress == false &&
-                                                      (int.parse(_controller[
-                                                                  index]
-                                                              .text) >
-                                                          0))
-                                                    removeFromCart(index);
-                                                },
-                                              ),
-                                              Container(
-                                                width: 26,
-                                                height: 20,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          5),
-                                                ),
-                                                child: TextField(
-                                                  textAlign: TextAlign.center,
-                                                  readOnly: true,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .fontColor),
-                                                  controller:
-                                                      _controller[index],
-                                                  decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                  ),
-                                                ),
-                                              ),
-                                              GestureDetector(
-                                                child: Card(
-                                                  shape:
-                                                      RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Icon(
-                                                      Icons.add,
-                                                      size: 15,
-                                                    ),
-                                                  ),
-                                                ),
-                                                onTap: () {
-                                                  if (_isProgress == false)
-                                                    addToCart(
-                                                        index,
-                                                        (int.parse(model
-                                                                    .prVarientList![
-                                                                        model
-                                                                            .selVarient!]
-                                                                    .cartCount!) +
-                                                                int.parse(model
-                                                                    .qtyStepSize!))
-                                                            .toString());
-                                                },
+                                              Text(
+                                                " (" + response.noOfRating! + ")",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .overline,
                                               )
                                             ],
                                           ),
-                                        ],
-                                      )
-                                    ],
-                                  ),*/
-                                  ),
-                          ],
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                            CUR_CURRENCY! +
+                                                " " +
+                                                response.min_max_price![
+                                                        "max_special_price"]
+                                                    .toString() +
+                                                " ",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .subtitle2!
+                                                .copyWith(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .fontColor,
+                                                    fontWeight: FontWeight.bold)),
+                                        Text(
+                                          "${response.min_max_price!["max_price"]}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .overline!
+                                              .copyWith(
+                                                  decoration:
+                                                      TextDecoration.lineThrough,
+                                                  letterSpacing: 0),
+                                        ),
+                                      ],
+                                    ),
+                                    response.time_left!=null&&response.time_left!=""?Text(
+                                        response.time_left!,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle2!
+                                            .copyWith(
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.bold)):SizedBox(),
+                                    Container(
+                                      height: 50,
+                                      width:
+                                          MediaQuery.of(context).size.width / 2.3,
+                                      child: Html(
+                                        data: "${response.shortDescription!}",
+                                        style: {
+                                          "body": Style(
+                                              fontSize: FontSize(12.0),
+                                              fontWeight: FontWeight.w400,
+                                              maxLines: 2,
+                                              padding: EdgeInsets.zero,
+                                              margin: EdgeInsets.zero,
+                                              textOverflow:
+                                                  TextOverflow.ellipsis),
+                                        },
+                                      ),
+                                    ),
+                                    response.breakfast_start_product_time != null
+                                        ? Text(
+                                            openStatus == "0"
+                                                ? "${response.next_available_text.toString()}"
+                                                : "",
+                                            style: TextStyle(
+                                                fontSize: 12, color: Colors.red),
+                                          )
+                                        : Text("")
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                        Container(
+                          height: 150,
+                          child: Stack(
+                            clipBehavior: Clip.hardEdge,
+                            children: [
+                              Container(
+                                height: 120,
+                                width: 140,
+                                padding: EdgeInsets.only(left: 10),
+                                child: Card(
+                                  elevation: 1,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: response.image!=null&&response.image!=""&&response.image.toString().contains("jpg")||response.image!=null&&response.image!=""&&response.image.toString().contains("png")?commonHWImage(
+                                        response.image.toString(),
+                                        120.0,
+                                        MediaQuery.of(context).size.width,
+                                        "assets/images/placeholder.png",
+                                        context,
+                                        "assets/images/placeholder.png"):Image.asset("assets/images/placeholder.png"),
+                                  ),
+                                ),
+                              ),
+                              response.prVarientList![0].cartCount == "0"
+                                  ? Positioned(
+                                      top: 100,
+                                      left: 25,
+                                      width: 100,
+                                      height: 30,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.white,
+                                              elevation: 2),
+                                          onPressed: () {
+                                            if (openStatus == "0") {
+                                              showToast(response
+                                                  .next_available_text
+                                                  .toString());
+                                              // "Item Available After ${timeData}");
+                                            }
+                                            // if (timeData != "Yes" &&
+                                            //     timeData != "No" &&
+                                            //     timeData != "") {
+                                            //   showToast(
+                                            //       "Item Available After ${timeData}");
+                                            // }
+                                            else {
+                                              if (context
+                                                      .read<CartProvider>()
+                                                      .isProgress ==
+                                                  false)
+                                                print(
+                                                    response.quantity_step_size);
+                                              // addToCart(
+                                              //     index,
+                                              //     (int.parse(response["data"][index]["variants"][0]["cart_count"])
+                                              //         + int.parse(
+                                              //             response["data"][index]["quantity_step_size"]))
+                                              //         .toString(), response["data"][index]);
+
+                                              addToCart(
+                                                  index,
+                                                  (int.parse(response
+                                                              .prVarientList![0]
+                                                              .cartCount!) +
+                                                          int.parse(response
+                                                              .quantity_step_size!))
+                                                      .toString(),
+                                                  response);
+                                            }
+                                          },
+                                          child: Text(
+                                            "ADD",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                color: colors.primary,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15),
+                                          )),
+                                    )
+                                  : Positioned(
+                                      top: 100,
+                                      left: 25,
+                                      width: 120,
+                                      // width: 100,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 20.0),
+                                        child: Card(
+                                          elevation: 2,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              color: Colors.white,
+                                              // border: Border.all(
+                                              //     color: Colors.black, width: 0.7)
+                                            ),
+                                            child: Row(
+                                              children: <Widget>[
+                                                response.availability == "0"
+                                                    ? Container()
+                                                    : cartBtnList
+                                                        ? Container()
+                                                        : Container(),
+                                                // GestureDetector(
+                                                //     child:
+                                                Container(
+                                                  height: 35,
+                                                  width: 30,
+                                                  child: IconButton(
+                                                    onPressed: () {
+                                                      if (context
+                                                              .read<
+                                                                  CartProvider>()
+                                                              .isProgress ==
+                                                          false)
+                                                        removeFromCart(
+                                                            index, response);
+                                                    },
+                                                    icon: Icon(
+                                                      Icons.remove,
+                                                      size: 20,
+                                                    ),
+                                                  ),
+                                                ),
+                                                // onTap: () {
+                                                //     // if (_isProgress == false
+                                                //     //     // (int.parse(
+                                                //     //     //     _controller[index].text) >
+                                                //     //     //     0)
+                                                //     // )
+                                                //       if (context.read<CartProvider>().isProgress ==
+                                                //           false)
+                                                //       removeFromCart(index, response["data"][index]);
+                                                //   },
+                                                // ),
+                                                Container(
+                                                    width: 26,
+                                                    height: 20,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Center(
+                                                            child: Text(response
+                                                                .prVarientList![0]
+                                                                .cartCount!)),
+                                                      ],
+                                                    )
+                                                    // TextField(
+                                                    //   textAlign: TextAlign.center,
+                                                    //   readOnly: true,
+                                                    //   style: TextStyle(
+                                                    //       fontSize: 12,
+                                                    //       color: Theme.of(context)
+                                                    //           .colorScheme
+                                                    //           .fontColor),
+                                                    //   controller: _controller[index],
+                                                    //   decoration: InputDecoration(
+                                                    //     border: InputBorder.none,
+                                                    //   ),
+                                                    // ),
+                                                    ),
+                                                // GestureDetector(
+                                                //   child:
+                                                Container(
+                                                  height: 35,
+                                                  width: 30,
+                                                  child: IconButton(
+                                                    onPressed: () {
+                                                      print(response.totalAllow);
+                                                      if(response.totalAllow!=null&&int.parse(response
+                                                          .prVarientList![
+                                                      0]
+                                                          .cartCount!)==int.parse(response.totalAllow!)){
+                                                          setSnackbar("Total Allowed Quantity ${response.totalAllow!}", context);
+                                                        return;
+                                                      }
+                                                      if (context
+                                                              .read<
+                                                                  CartProvider>()
+                                                              .isProgress ==
+                                                          false)
+                                                        addToCart(
+                                                            index,
+                                                            (int.parse(response
+                                                                        .prVarientList![
+                                                                            0]
+                                                                        .cartCount!)
+                                                                    // model
+                                                                    // .prVarientList![model
+                                                                    // .selVarient!]
+                                                                    // .cartCount!)
+                                                                    +
+                                                                    int.parse(response
+                                                                        .quantity_step_size
+                                                                        .toString()))
+                                                                .toString(),
+                                                            response);
+                                                    },
+                                                    icon: Icon(
+                                                      Icons.add,
+                                                      size: 20,
+                                                    ),
+                                                  ),
+                                                ),
+                                                //   onTap: () {
+                                                //     if (context.read<CartProvider>().isProgress ==
+                                                //         false)
+                                                //     addToCart(
+                                                //         index,
+                                                //         (int.parse(response["data"][index]["variants"][0]["cart_count"])
+                                                //             // model
+                                                //             // .prVarientList![model
+                                                //             // .selVarient!]
+                                                //             // .cartCount!)
+                                                //             + int.parse(
+                                                //                 response["data"][index]["quantity_step_size"]))
+                                                //             .toString(), response["data"][index]);
+                                                //   },
+                                                // )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      /*Row(
+                                      children: [
+                                        model.availability == "0"
+                                            ? Container()
+                                            : cartBtnList
+                                                ? Container()
+                                                : Container(),
+
+                                        Row(
+                                          children: <Widget>[
+                                            Row(
+                                              children: <Widget>[
+                                                GestureDetector(
+                                                  child: Card(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Icon(
+                                                        Icons.remove,
+                                                        size: 15,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  onTap: () {
+                                                    if (_isProgress == false &&
+                                                        (int.parse(_controller[
+                                                                    index]
+                                                                .text) >
+                                                            0))
+                                                      removeFromCart(index);
+                                                  },
+                                                ),
+                                                Container(
+                                                  width: 26,
+                                                  height: 20,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  child: TextField(
+                                                    textAlign: TextAlign.center,
+                                                    readOnly: true,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: Theme.of(context)
+                                                            .colorScheme
+                                                            .fontColor),
+                                                    controller:
+                                                        _controller[index],
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                    ),
+                                                  ),
+                                                ),
+                                                GestureDetector(
+                                                  child: Card(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Icon(
+                                                        Icons.add,
+                                                        size: 15,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  onTap: () {
+                                                    if (_isProgress == false)
+                                                      addToCart(
+                                                          index,
+                                                          (int.parse(model
+                                                                      .prVarientList![
+                                                                          model
+                                                                              .selVarient!]
+                                                                      .cartCount!) +
+                                                                  int.parse(model
+                                                                      .qtyStepSize!))
+                                                              .toString());
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),*/
+                                    ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          )
+        )
         : SizedBox(
             height: 0,
           );
